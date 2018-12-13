@@ -1,0 +1,17 @@
+---
+- name: Ntp Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: ntp
+    pask_ntp:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      primary-server: "192.168.0.10"
+      secondary-server: "192.168.0.20"
+      minpoll: "4"
+      maxpoll: "17"
+      status: "disable"

@@ -1,0 +1,29 @@
+---
+- name: create real
+  connection: local
+  hosts: targets
+  tasks:
+
+  - name: Create real
+    pask_real:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      id: "101"
+      rip: "172.16.123.24"
+      rport: "5544"
+      priority: "30"
+      weight: "50"
+      graceful-shutdown: "enable"
+      max-connection: "12"
+      upload-bandwidth: "100000"
+      download-bandwidth: "200000"
+      domain-filter: "1"
+      pool-size: "100"
+      pool-age: "200"
+      pool-reuse: "300"
+      pool-srcmask: "14"
+      src-natip: "5.4.3.2"
+      status: "disable"
+      state: "present"

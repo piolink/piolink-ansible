@@ -1,0 +1,37 @@
+---
+- name: Interface Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: create interface ip
+    pask_interface:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "test_vlan"
+      mtu: "750"
+      status: "down"
+      rpf: "loose"
+      adv-cur-hop-limit: "100"
+      adv-reachable-time: "5012"
+      ip:
+          address: "172.118.20.111/32"
+          broadcast: "172.118.20.1"
+          overlapped: "on"
+
+  - name: delete interface ip
+    pask_interface:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "test_vlan"
+      mtu: "750"
+      status: "down"
+      rpf: "loose"
+      ip:
+          address: "172.118.20.111/32"
+          broadcast: "172.118.20.1"
+          overlapped: "on"

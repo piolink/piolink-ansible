@@ -1,0 +1,27 @@
+---
+- name: Interface Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: create vlan
+    pask_vlan:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "test_vlan"
+      vid: "2917"
+      port:
+        - name: "ge7"
+          type: "untagged"
+
+  - name: delete vlan
+    pask_vlan:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "test_vlan"
+      vid: "2917"
+      state: "absent"

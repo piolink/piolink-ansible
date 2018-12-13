@@ -1,0 +1,25 @@
+---
+- name: Health-check Test
+  hosts: all
+  connection: local
+  vars:
+      - target_ip : "{{ansible_ssh_host}}"
+      - port : "{{ansible_ssh_port}}"
+
+  tasks:
+
+  - name: Create health-check
+    pask_health_check:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      id : "500"
+      type: "tcp"
+      half-open: "enable"
+      increase-icmp-id: "enable"
+      interval: "53"
+      mac: "00:06:c4:94:02:27"
+      port: "5004"
+      retry: "2"
+      timeout: "4"

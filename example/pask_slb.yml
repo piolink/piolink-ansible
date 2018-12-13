@@ -1,0 +1,47 @@
+---
+- name: Create slb Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: Create slb aaaa? ! @ $ % ^
+    pask_slb:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "slb_test"
+      vip:
+          - { ip: "172.118.10.111", protocol: { protocol: "icmp", vport: "1231" }}
+          - { ip: "172.118.10.122" }
+      priority: "25"
+      nat-mode: "dnat"
+      lan-to-lan: "10.10.10.10/24"
+      lb-method: "wlc"
+      real:
+          - { id: "10", rport: "5512", status: "enable", graceful-shutdown: "disable"}
+          - id: "14"
+      health-check:
+          - "100"
+          - "200"
+      slow-start:
+          rate: "7"
+          timer: "444"
+      sticky:
+          time: "4121"
+          source-subnet: "27"
+      session-sync: "persistence"
+      fail-skip: "inact"
+      keep-backup: "disable"
+      status: "disable"
+      snatip: "14.14.14.14"
+      state: "present"
+
+  - name: delete slb
+    pask_slb:
+        prest_ip: "{{ansible_ssh_host}}"
+        prest_port: "{{ansible_ssh_port}}"
+        user_id: "{{user_id}}"
+        user_pw: "{{user_pw}}"
+        name: "slb_test"
+        state: "absent"

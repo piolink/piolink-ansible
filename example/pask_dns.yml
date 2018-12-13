@@ -1,0 +1,17 @@
+---
+- name: Dns Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: create dns ip
+    pask_dns :
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      retry: "5"
+      timeout: "10"
+      id:
+        - { id: "1", ip: "192.168.203.100" }
+        - { id: "2", ip: "8.8.8.8" }

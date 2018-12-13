@@ -1,0 +1,13 @@
+---
+- name: Reboot Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: Reboot Config
+    pask_reboot:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      verify: "yes"

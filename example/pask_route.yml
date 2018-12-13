@@ -1,0 +1,27 @@
+---
+- name: Route Module Test
+  connection: local
+  hosts: targets
+  tasks:
+
+  - name: Create route
+    pask_route:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      default-gateway: 
+          - {priority: "100", gateway: "192.168.214.1", health-check: {id: "1"}}
+          - {priority: "5", gateway: "192.168.224.1", health-check: {id: "1"}}
+      network:
+          - { dest: "10.10.0.0/16",
+              gateway: [
+                {gateway: "10.10.10.1"},
+              ],
+            }
+          - { dest: "10.20.0.0/16",
+              interface: [
+                  {interface: "v2933"},
+                  {interface: "v2944"}
+              ]
+            }

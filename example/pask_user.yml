@@ -1,0 +1,30 @@
+---
+- name: User Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: Create User
+    pask_user:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "piolink"
+      description: "Piolink administrator"
+      level: "user"
+      log: "disable"
+      password: "Admin123$"
+
+  - name: Delete User
+    pask_user:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      name: "piolink"
+      description: "Piolink administrator"
+      level: "user"
+      log: "disable"
+      password: "Admin123$"
+      state: "absent"

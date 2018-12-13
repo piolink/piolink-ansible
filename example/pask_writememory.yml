@@ -1,0 +1,13 @@
+---
+- name: Write memory Test
+  hosts: all
+  connection: local
+
+  tasks:
+  - name: Save Config
+    pask_writememory:
+      prest_ip: "{{ansible_ssh_host}}"
+      prest_port: "{{ansible_ssh_port}}"
+      user_id: "{{user_id}}"
+      user_pw: "{{user_pw}}"
+      verify: "yes"
